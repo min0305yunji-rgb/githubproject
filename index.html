@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>유니톡 활동 인사이트</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">U</span><span>Unitalk</span></div>
+    <nav>
+      <button class="nav-item active" data-view="overview"><span>▦</span> 대시보드</button>
+      <button class="nav-item" data-view="keywords"><span>⌕</span> 키워드 분석</button>
+      <button class="nav-item" data-view="activities"><span>▤</span> 활동 탐색</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">STUDENT ACTIVITY INSIGHTS</p>
+        <h1 id="pageTitle">대시보드</h1>
+      </div>
+      <label class="upload-button">CSV 업로드 <input id="csvUpload" type="file" accept=".csv" multiple hidden></label>
+    </header>
+
+    <section id="overviewView" class="view active">
+      <div class="filter-row">
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="활동명 또는 키워드 검색"></div>
+        <select id="typeFilter"><option value="">전체 유형</option></select>
+        <select id="fieldFilter"><option value="">전체 분야</option></select>
+      </div>
+
+      <div class="metric-grid">
+        <article class="metric-card"><div class="metric-icon purple">◆</div><div><p>전체 활동</p><strong id="totalCount">0</strong><span id="totalNote">등록 데이터</span></div></article>
+        <article class="metric-card"><div class="metric-icon blue">⌁</div><div><p>키워드 수</p><strong id="keywordCount">0</strong><span>분석된 키워드</span></div></article>
+        <article class="metric-card"><div class="metric-icon orange">◫</div><div><p>활동 분야</p><strong id="fieldCount">0</strong><span>분야 분류</span></div></article>
+        <article class="metric-card"><div class="metric-icon green">◎</div><div><p>상위 키워드</p><strong id="topKeyword">-</strong><span id="topKeywordCount">0회 등장</span></div></article>
+      </div>
+
+      <div class="chart-grid">
+        <article class="panel large"><div class="panel-head"><div><p class="panel-kicker">KEYWORD INSIGHTS</p><h2>인기 키워드 TOP 10</h2></div><span class="badge">전체 기간</span></div><canvas id="keywordChart" height="230"></canvas></article>
+        <article class="panel"><div class="panel-head"><div><p class="panel-kicker">ACTIVITY MIX</p><h2>활동 유형 비중</h2></div></div><canvas id="typeChart" height="230"></canvas><div id="typeLegend" class="legend"></div></article>
+      </div>
+
+      <div class="bottom-grid">
+        <article class="panel"><div class="panel-head"><div><p class="panel-kicker">TRENDING</p><h2>분야별 활동 현황</h2></div></div><div id="fieldBars" class="field-bars"></div></article>
+        <article class="panel"><div class="panel-head"><div><p class="panel-kicker">LATEST</p><h2>최근 활동</h2></div></div><div id="recentList" class="recent-list"></div></article>
+      </div>
+    </section>
+
+    <section id="keywordsView" class="view">
+      <div class="keyword-hero"><div><p class="eyebrow">KEYWORD DATABASE</p><h2>키워드 탐색기</h2><p>관심 키워드를 선택하면 관련 활동을 빠르게 찾을 수 있습니다.</p></div><input id="keywordSearch" type="search" placeholder="키워드 검색"></div>
+      <div id="keywordCloud" class="keyword-cloud"></div>
+    </section>
+
+    <section id="activitiesView" class="view">
+      <div class="table-panel"><div class="panel-head"><div><p class="panel-kicker">ACTIVITY DATABASE</p><h2>활동 목록</h2></div><span id="resultCount" class="badge">0건</span></div><div class="table-wrap"><table><thead><tr><th>활동명</th><th>분류</th><th>분야</th><th>주최</th><th>키워드</th></tr></thead><tbody id="activityTable"></tbody></table></div></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
